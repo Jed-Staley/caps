@@ -1,9 +1,8 @@
 'use strict';
-
-const { simulatePickup, thankCustomer } = require('./handler');
+const { simulateDropoff, thankCustomer } = require('./handler');
 const eventPool = require('../eventPool');
 
 const storeName = '1-206-flowers';
-simulatePickup(storeName);
+simulateDropoff(storeName);
 
 eventPool.on('delivered', thankCustomer);
