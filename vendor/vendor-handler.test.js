@@ -1,7 +1,7 @@
 'use strict';
 
 const eventPool = require('../eventPool');
-const { simulatePickup, thankCustomer } = require('./handler');
+const { simulateDropoff, thankCustomer } = require('./handler');
 const Chance = require('chance');
 
 jest.mock('../eventPool', () => {
@@ -29,10 +29,10 @@ describe('Vendor Handlers', () => {
     jest.clearAllMocks();
   });
 
-  it('should emit a pickup event with payload when simulatePickup is called', () => {
+  it('should emit a dropoff event with payload when simulateDropoff is called', () => {
     const storeName = '1-206-flowers';
 
-    simulatePickup(storeName);
+    simulateDropoff(storeName);
 
     const expectedPayload = {
       store: storeName,
@@ -41,7 +41,7 @@ describe('Vendor Handlers', () => {
       address: 'Seattle, WA',
     };
 
-    expect(eventPool.emit).toHaveBeenCalledWith('pickup', expectedPayload);
+    expect(eventPool.emit).toHaveBeenCalledWith('dropoff', expectedPayload);
   });
 
   it('should log a thank you message when thankCustomer is called', () => {
